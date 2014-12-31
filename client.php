@@ -8,7 +8,7 @@ if ($error) {
 }
 $date = new DateTime();
 $time = $date->getTimestamp();
-$result = $client->call("progressSession", array("parameters" => "content=72|state=1|mobileNumber=+989126070186|lang=2|timeStamp=$time|traceCode=-1"));
+$result = $client->call("progressSession", array("parameters" => "content=7720|state=1|mobileNumber=+989126070186|lang=2|timeStamp=$time|traceCode=-1"));
 
 if ($client->fault) {
   echo "<h2>Fault</h2><pre>";

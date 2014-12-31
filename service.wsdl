@@ -1,1 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?><wsdl:definitions name="Request" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"><wsdl:types><xsd:schema targetNamespace="http://tempuri.org/Imports"><xsd:import schemaLocation="http://ussd.rahco.ir/Request.svc?xsd=xsd0" namespace="http://tempuri.org/"/><xsd:import schemaLocation="http://ussd.rahco.ir/Request.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/></xsd:schema></wsdl:types><wsdl:message name="IRequest_progressSession_InputMessage"><wsdl:part name="parameters" element="tns:progressSession"/></wsdl:message><wsdl:message name="IRequest_progressSession_OutputMessage"><wsdl:part name="parameters" element="tns:progressSessionResponse"/></wsdl:message><wsdl:portType name="IRequest"><wsdl:operation name="progressSession"><wsdl:input wsaw:Action="http://tempuri.org/IRequest/progressSession" message="tns:IRequest_progressSession_InputMessage"/><wsdl:output wsaw:Action="http://tempuri.org/IRequest/progressSessionResponse" message="tns:IRequest_progressSession_OutputMessage"/></wsdl:operation></wsdl:portType><wsdl:binding name="BasicHttpBinding_IRequest" type="tns:IRequest"><soap:binding transport="http://schemas.xmlsoap.org/soap/http"/><wsdl:operation name="progressSession"><soap:operation soapAction="http://tempuri.org/IRequest/progressSession" style="document"/><wsdl:input><soap:body use="literal"/></wsdl:input><wsdl:output><soap:body use="literal"/></wsdl:output></wsdl:operation></wsdl:binding><wsdl:service name="Request"><wsdl:port name="BasicHttpBinding_IRequest" binding="tns:BasicHttpBinding_IRequest"><soap:address location="http://ussd.rahco.ir/Request.svc"/></wsdl:port></wsdl:service></wsdl:definitions>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<definitions xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="urn:asanservice" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:asanservice">
+<types>
+<xsd:schema targetNamespace="urn:asanservice"
+>
+ <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+ <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+</xsd:schema>
+</types>
+<message name="progressSessionRequest">
+  <part name="parameters" type="xsd:string" /></message>
+<message name="progressSessionResponse">
+  <part name="parameters" type="xsd:string" /></message>
+<portType name="asanservicePortType">
+  <operation name="progressSession">
+    <documentation>Get a listing of products by category</documentation>
+    <input message="tns:progressSessionRequest"/>
+    <output message="tns:progressSessionResponse"/>
+  </operation>
+</portType>
+<binding name="asanserviceBinding" type="tns:asanservicePortType">
+  <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+  <operation name="progressSession">
+    <soap:operation soapAction="urn:asanservice#progressSession" style="rpc"/>
+    <input><soap:body use="encoded" namespace="urn:asanservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></input>
+    <output><soap:body use="encoded" namespace="urn:asanservice" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/></output>
+  </operation>
+</binding>
+<service name="asanservice">
+  <port name="asanservicePort" binding="tns:asanserviceBinding">
+    <soap:address location="http://69.16.245.83/service.php"/>
+  </port>
+</service>
+</definitions>

@@ -7,7 +7,8 @@ if ($error) {
   echo "<h2>Constructor error</h2><pre>" . $error . "</pre>";
 }
 $date = new DateTime();
-$time = $date->getTimestamp();
+$date->setTimezone(new DateTimeZone('Asia/Tehran'));
+$time = $date->format('YmdHis');
 $result = $client->call("progressSession", array("parameters" => "content=7720|state=1|mobileNumber=+989126070186|lang=2|timeStamp=$time|traceCode=-1"));
 
 if ($client->fault) {

@@ -13,65 +13,70 @@ function progressSession($data) {
   $ROF=3500;
   error_log($data);
   $price_array = array(
-    11=>array('price'=>(10*$ROF*1.07)+(17*$ROF),'code'=>89654258),
-    12=>array('price'=>(20*$ROF*1.07)+(17*$ROF),'code'=>89654258),
-    13=>array('price'=>(25*$ROF*1.07)+(17*$ROF),'code'=>89654258),
-    14=>array('price'=>(50*$ROF*1.07)+(17*$ROF),'code'=>89654258),
-    15=>array('price'=>(100*$ROF*1.07)+(17*$ROF),'code'=>89654258),
+    11=>array('price'=>(10*$ROF*1.07)+(17*$ROF),'code'=>19654258),
+    12=>array('price'=>(20*$ROF*1.07)+(17*$ROF),'code'=>19654258),
+    13=>array('price'=>(25*$ROF*1.07)+(17*$ROF),'code'=>19654258),
+    14=>array('price'=>(50*$ROF*1.07)+(17*$ROF),'code'=>19654258),
+    15=>array('price'=>(100*$ROF*1.07)+(17*$ROF),'code'=>19654258),
 
-    21=>array('price'=>10*$ROF*1.084,'code'=>89654258),
-    22=>array('price'=>15*$ROF*1.078,'code'=>89654258),
-    23=>array('price'=>25*$ROF*1.070,'code'=>89654258),
-    24=>array('price'=>50*$ROF*1.059,'code'=>89654258),
-    25=>array('price'=>100*$ROF*1.044,'code'=>89654258),
+    21=>array('price'=>10*$ROF*1.084,'code'=>19654258),
+    22=>array('price'=>15*$ROF*1.078,'code'=>19654258),
+    23=>array('price'=>25*$ROF*1.070,'code'=>19654258),
+    24=>array('price'=>50*$ROF*1.059,'code'=>19654258),
+    25=>array('price'=>100*$ROF*1.044,'code'=>19654258),
 
-    31=>array('price'=>10*$ROF*1.14,'code'=>89654258),
-    32=>array('price'=>15*$ROF*1.114,'code'=>89654258),
-    33=>array('price'=>25*$ROF*1.114,'code'=>89654258),
-    34=>array('price'=>50*$ROF*1.068,'code'=>89654258),
-    35=>array('price'=>100*$ROF*1.056,'code'=>89654258),
+    31=>array('price'=>10*$ROF*1.14,'code'=>19654258),
+    32=>array('price'=>15*$ROF*1.114,'code'=>19654258),
+    33=>array('price'=>25*$ROF*1.114,'code'=>19654258),
+    34=>array('price'=>50*$ROF*1.068,'code'=>19654258),
+    35=>array('price'=>100*$ROF*1.056,'code'=>19654258),
 
-    41=>array('price'=>10*$ROF*1.109,'code'=>89654258),
-    42=>array('price'=>15*$ROF*1.101,'code'=>89654258),
-    43=>array('price'=>25*$ROF*1.166,'code'=>89654258),
-    44=>array('price'=>50*$ROF*1.105,'code'=>89654258),
-    45=>array('price'=>100*$ROF*1.01,'code'=>89654258),
+    41=>array('price'=>10*$ROF*1.109,'code'=>19654258),
+    42=>array('price'=>15*$ROF*1.101,'code'=>19654258),
+    43=>array('price'=>25*$ROF*1.166,'code'=>19654258),
+    44=>array('price'=>50*$ROF*1.105,'code'=>19654258),
+    45=>array('price'=>100*$ROF*1.01,'code'=>19654258),
 
-    51=>array('price'=>10*$ROF*1.104,'code'=>89654258),
-    52=>array('price'=>15*$ROF*1.061,'code'=>89654258),
-    53=>array('price'=>25*$ROF*1.084,'code'=>89654258),
-    54=>array('price'=>50*$ROF*1.033,'code'=>89654258),
-    55=>array('price'=>100*$ROF*1.018,'code'=>89654258),
+    51=>array('price'=>10*$ROF*1.104,'code'=>19654258),
+    52=>array('price'=>15*$ROF*1.061,'code'=>19654258),
+    53=>array('price'=>25*$ROF*1.084,'code'=>19654258),
+    54=>array('price'=>50*$ROF*1.033,'code'=>19654258),
+    55=>array('price'=>100*$ROF*1.018,'code'=>19654258),
 
-    61=>array('price'=>10*$ROF*1.108,'code'=>89654258),
-    62=>array('price'=>20*$ROF*1.128,'code'=>89654258),
-    63=>array('price'=>50*$ROF*1.81,'code'=>89654258),
+    61=>array('price'=>10*$ROF*1.108,'code'=>19654258),
+    62=>array('price'=>20*$ROF*1.128,'code'=>19654258),
+    63=>array('price'=>50*$ROF*1.81,'code'=>19654258),
 
-    71=>array('price'=>10*$ROF*1.14,'code'=>89654258),
-    72=>array('price'=>15*$ROF*1.114,'code'=>89654258),
-    73=>array('price'=>25*$ROF*1.114,'code'=>89654258),
-    74=>array('price'=>50*$ROF*1.068,'code'=>89654258),
-    75=>array('price'=>100*$ROF*1.056,'code'=>89654258)
+    71=>array('price'=>10*$ROF*1.14,'code'=>19654258),
+    72=>array('price'=>15*$ROF*1.114,'code'=>19654258),
+    73=>array('price'=>25*$ROF*1.114,'code'=>19654258),
+    74=>array('price'=>50*$ROF*1.068,'code'=>19654258),
+    75=>array('price'=>100*$ROF*1.056,'code'=>19654258)
 
 
   );
   $blks = explode('|', $data);
   $traceCode="-1";
+  $content = 0;
+  $mobileNumber = 0;
   foreach ($blks as $blk) {
     $keyvalue = explode('=', $blk);
     $key = $keyvalue[0];
     $value = $keyvalue[1];
     if ($key == 'content') {
-      $content = $value;
+      if(!empty($value))
+        $content = $value;
     } else if ($key == 'mobileNumber') {
+      if(!empty($value))
       $mobileNumber = $value;
     } else if ($key == 'state') {
       $state = $value;
     } else if ($key == 'traceCode') {
-      $traceCode = $value;
+      if(!empty($value))
+        $traceCode = $value;
     } else if ($key == 'lang') {
       $lang = $value;
-    } else if ($key == 'timeStamp') {
+    } else if ($key == 'timestamp') {
       $timeStamp = $value;
     }
 
@@ -99,19 +104,30 @@ VALUES (".$content.", ".$mobileNumber.", ".$state.", ".$traceCode.", ".$lang.", 
       error_log("Error: " . $sql . "<br>" . $conn->error);
     }
 
+  $sql = "SELECT price FROM price WHERE id=1";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+    // output data of each row
+    if($row = $result->fetch_assoc()) {
+      $ROF=$row["price"];
+    }
+  }
+
+
     $conn->close();
   $date = new DateTime();
+  $date->setTimezone(new DateTimeZone('Asia/Tehran'));
   if($state==0){
     $state=3;
     $lang=2;
-    $timeStamp = $date->getTimestamp();
+    $timeStamp = $date->format('YmdHis');
     $message = 'خرید موفق انجام شد. اطلاعات کارت خریداری شده به شما پیامک خواهدشد.';
     return finalMessage($state,$lang,$timeStamp,$message);
   }
     if($content=='7720'){
       $state=2;
       $lang=2;
-      $timeStamp = $date->getTimestamp();
+      $timeStamp = $date->format('YmdHis');
         $message =
             'TehranVisaCard.Com
 1. Visa
@@ -127,7 +143,7 @@ VALUES (".$content.", ".$mobileNumber.", ".$state.", ".$traceCode.", ".$lang.", 
   else if($content=='1'){
     $state=2;
     $lang=2;
-    $timeStamp = $date->getTimestamp();
+    $timeStamp = $date->format('YmdHis');
 
     $price10 = (10*$ROF*1.07)+(17*$ROF);
     $price20 = (20*$ROF*1.07)+(17*$ROF);
@@ -147,7 +163,7 @@ VALUES (".$content.", ".$mobileNumber.", ".$state.", ".$traceCode.", ".$lang.", 
   else if($content=='2'){
     $state=2;
     $lang=2;
-    $timeStamp = $date->getTimestamp();
+    $timeStamp = $date->format('YmdHis');
 
     $price10 = 10*$ROF*1.084;
     $price15 = 15*$ROF*1.078;
@@ -167,7 +183,7 @@ VALUES (".$content.", ".$mobileNumber.", ".$state.", ".$traceCode.", ".$lang.", 
   else if($content=='3'){
     $state=2;
     $lang=2;
-    $timeStamp = $date->getTimestamp();
+    $timeStamp = $date->format('YmdHis');
 
     $price10 = 10*$ROF*1.14;
     $price15 = 15*$ROF*1.114;
@@ -187,7 +203,7 @@ VALUES (".$content.", ".$mobileNumber.", ".$state.", ".$traceCode.", ".$lang.", 
   else if($content=='4'){
     $state=2;
     $lang=2;
-    $timeStamp = $date->getTimestamp();
+    $timeStamp = $date->format('YmdHis');
 
     $price10 = 10*$ROF*1.109;
     $price15 = 15*$ROF*1.101;
@@ -207,7 +223,7 @@ VALUES (".$content.", ".$mobileNumber.", ".$state.", ".$traceCode.", ".$lang.", 
   else if($content=='5'){
     $state=2;
     $lang=2;
-    $timeStamp = $date->getTimestamp();
+    $timeStamp = $date->format('YmdHis');
 
     $price10 = 10*$ROF*1.104;
     $price15 = 15*$ROF*1.061;
@@ -227,7 +243,7 @@ VALUES (".$content.", ".$mobileNumber.", ".$state.", ".$traceCode.", ".$lang.", 
   else if($content=='6'){
     $state=2;
     $lang=2;
-    $timeStamp = $date->getTimestamp();
+    $timeStamp = $date->format('YmdHis');
 
     $price10 = 10*$ROF*1.108;
     $price20 = 20*$ROF*1.128;
@@ -243,7 +259,7 @@ VALUES (".$content.", ".$mobileNumber.", ".$state.", ".$traceCode.", ".$lang.", 
   else if($content=='7'){
     $state=2;
     $lang=2;
-    $timeStamp = $date->getTimestamp();
+    $timeStamp = $date->format('YmdHis');
 
     $price10 = 10*$ROF*1.14;
     $price15 = 15*$ROF*1.114;
@@ -266,7 +282,7 @@ VALUES (".$content.", ".$mobileNumber.", ".$state.", ".$traceCode.", ".$lang.", 
     if($index!=0){
       $state = 0;
       $lang = 2;
-      $timeStamp = $date->getTimestamp();
+      $timeStamp = $date->format('YmdHis');
 
       $amount = $price_array[$index]['price'];
       $mpaadcode = $price_array[$index]['code'];
@@ -275,7 +291,7 @@ VALUES (".$content.", ".$mobileNumber.", ".$state.", ".$traceCode.", ".$lang.", 
     }else {
       $state = 3;
       $lang = 2;
-      $timeStamp = $date->getTimestamp();
+      $timeStamp = $date->format('YmdHis');
 
 //    $message = mb_convert_encoding("به زودی راه اندازی خواهد شد.","UTF-8","UTF-8");
       $message = "مقدار وارد شده صحیح نمی باشد.";
